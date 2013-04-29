@@ -1,0 +1,10 @@
+﻿<Application x:Class="RPGMakerFacesGenerator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:rm="clr-namespace:RPGMakerFacesGenerator"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <rm:ActiveFaceParts x:Key="ActiveFaceParts"/>
+        <rm:SavedColors x:Key="SavedColors"/>
+    </Application.Resources>
+</Application>

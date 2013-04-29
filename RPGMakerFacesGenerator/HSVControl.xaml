@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="RPGMakerFacesGenerator.HSVControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:rm="clr-namespace:RPGMakerFacesGenerator"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Hue" Grid.Row="0" Grid.Column="0"/>
+            <Slider Grid.Row="0" Grid.Column="2" Minimum="0.0" Maximum="1.0" Height="20" LargeChange="0.1" SmallChange="0.01" TickFrequency="0.01" Value="{Binding Path=HShift}" >
+                <Slider.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Hue shift</TextBlock>
+                            <TextBlock>Controls the color of the element.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Slider.ToolTip>
+            </Slider>
+            <Label Content="Saturation" Grid.Row="1" Grid.Column="0"/>
+            <Slider Grid.Row="1" Grid.Column="2" Minimum="0.0" Maximum="2.0" Height="20" LargeChange="0.1" SmallChange="0.01" TickFrequency="0.01" Value="{Binding Path=SFactor}" >
+                <Slider.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Saturation factor</TextBlock>
+                            <TextBlock>Amount of saturation (distance from gray) of the color.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Slider.ToolTip>
+            </Slider>
+            <Label Content="Value" Grid.Row="2" Grid.Column="0"/>
+            <Slider Grid.Row="2" Grid.Column="2" Minimum="0.0" Maximum="2.0" Height="20" LargeChange="0.1" SmallChange="0.01" TickFrequency="0.01" Value="{Binding Path=VFactor}" >
+                <Slider.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Value factor</TextBlock>
+                            <TextBlock>Amount of color.</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </Slider.ToolTip>
+            </Slider>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListBox Width="100" Height="93"
+                     ItemsSource="{StaticResource SavedColors}"
+                     IsSynchronizedWithCurrentItem="True"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ToolTip>
+                    <ToolTip>
+                        <StackPanel>
+                            <TextBlock FontWeight="Bold">Saved colors</TextBlock>
+                            <TextBlock>Double click .</TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </ListBox.ToolTip>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type rm:HSVData}">
+                        <Rectangle Width="25" Height="25" Margin="2.2">
+                            <Rectangle.Fill>
+                                <SolidColorBrush Color="{Binding Path=ResultingBaseColor}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                <Button Content="Save" Width="40" Margin="5" Command="{Binding Source={StaticResource SavedColors}, Path=Save}" CommandParameter="{Binding}" />
+                <Button Content="Load" Width="40" Margin="5" Command="{Binding Source={StaticResource SavedColors}, Path=Load}" CommandParameter="{Binding}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

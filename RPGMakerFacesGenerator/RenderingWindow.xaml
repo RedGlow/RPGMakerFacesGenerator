@@ -1,0 +1,8 @@
+﻿<Window x:Class="RPGMakerFacesGenerator.RenderingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="RenderingWindow" xmlns:my="clr-namespace:RPGMakerFacesGenerator" WindowStyle="None" ResizeMode="NoResize" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="225" Width="225" MaxWidth="225" MaxHeight="225">
+    <Grid>
+        <my:FaceDisplay x:Name="faceDisplay" Width="225" Height="225" MaxWidth="225" MaxHeight="225" />
+    </Grid>
+</Window>
